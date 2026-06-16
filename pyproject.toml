@@ -1,0 +1,9 @@
+[project]
+name = "creator-signal-automation-agent"
+version = "0.1.0"
+description = "Scores creator/content signals and prepares a brief queue"
+requires-python = ">=3.10"
+dependencies = []
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]

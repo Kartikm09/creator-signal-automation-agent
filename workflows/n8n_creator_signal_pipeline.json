@@ -1,0 +1,39 @@
+{
+  "name": "Creator Signal Automation Blueprint",
+  "nodes": [
+    {
+      "name": "Manual Signal Intake",
+      "type": "manualTrigger",
+      "position": [0, 0]
+    },
+    {
+      "name": "Score Signals",
+      "type": "executeCommand",
+      "position": [240, 0],
+      "parameters": {
+        "command": "python -m creator_signal_agent.analyze examples/signals.csv"
+      }
+    },
+    {
+      "name": "Brief Queue",
+      "type": "set",
+      "position": [480, 0],
+      "parameters": {
+        "status": "brief-ready signals routed for human review"
+      }
+    },
+    {
+      "name": "Human Approval",
+      "type": "wait",
+      "position": [720, 0],
+      "parameters": {
+        "reason": "Creator approves the angle before publishing or outreach."
+      }
+    }
+  ],
+  "connections": {
+    "Manual Signal Intake": ["Score Signals"],
+    "Score Signals": ["Brief Queue"],
+    "Brief Queue": ["Human Approval"]
+  }
+}
